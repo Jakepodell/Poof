@@ -1,4 +1,7 @@
 public class Alpaca
 {
-  //austin smells
+  public void draw (Graphics 2D)
+  public void rorateMouth ()
+  public void fluctuatePower
+  public Ammo launch ()
 }
