@@ -2,24 +2,31 @@ import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import javax.imageio.ImageIO;
+import java.io.*;
+
 public class Ammo
 {
 	BufferedImage theImage;
-	int xSize,ySize, xVelocity, yVelocity;
+	public static final int XSIZE = 20;
+	public static final int YSIZE = 20;
+	int xVelocity, yVelocity;
 	Point theLocation;
-	public Ammo(BufferedImage im, Point loc, int xS,int yS)
+	public Ammo()
 	{
-		theImage = im;
-		theLocation = loc;
-		xSize = xS;
-		ySize = yS;
+		try
+		{
+			theImage = ImageIO.read(new File("////.jpg"));
+		}
+		catch(IOException e){}
+		theLocation = new Point(50,50);
 		xVelocity = 0;
 		yVelocity = 0;
 
 	}
 	public void draw(Graphics2D g)
 	{
-		g.drawImage(theImage, (int)theLocation.getX(), (int)theLocation.getY(), xSize, ySize, null);
+		g.drawImage(theImage, (int)theLocation.getX(), (int)theLocation.getY(), XSIZE, YSIZE, null);
 	}
 	public void launch(int xVel, int yVel)
 	{
