@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.Rectangle;
 
 public class Grassfro extends Structure
 {
@@ -22,5 +23,10 @@ public class Grassfro extends Structure
 		y = 0;
 		i = null;
 		d = null;
+	}
+	public Rectangle getRect()
+	{
+		Rectangle theRect = new Rectangle(x,y, d.getWidth(), (int) d.getHeight());
+		return theRect;
 	}
 }
