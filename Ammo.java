@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Ammo
 {
@@ -41,6 +43,18 @@ public class Ammo
 	public Point getLocation()
 	{
 		return theLocation;
+	}
+	public void explode()
+	{
+		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 50,50);
+		ArrayList<Grassfro> grassfros = level.getGrassfro(); //Gets all grassfros in level
+		for (Grassfro grass : grasfros)
+		{
+			if (ammorect.intersects(grass.getRect()))
+			{
+				grass.explode();
+			}
+		}
 	}
 
 }
