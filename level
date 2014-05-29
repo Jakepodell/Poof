@@ -7,7 +7,7 @@ public class level
 	{
 		ammo = new ArrayList<Ammo>();
 		for (int i=0;i<amount;i++)
-			ammo.add(new Ammo());
+			ammo.add(new Ammo(this));
 		theGrassFros = grfo;
 	}
 	public ArrayList<Grassfro> getGrassfro()
