@@ -14,7 +14,7 @@ public class Ammo
 	public static final int YSIZE = 20;
 	int xVelocity, yVelocity;
 	Point theLocation;
-	Level theLevel;
+	level theLevel;
 	public Ammo(level l)
 	{
 		try
