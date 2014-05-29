@@ -18,6 +18,11 @@ public class Alpaca implements MouseMotionListener{
 	private Image mouth;
 	private Point mousePoint;
 	
+	public static final Point ARILOC = new Point(50,200);
+	public static final int HEIGHT = 300;
+	public static final int WIDTH = 100;
+	public static final Point MOUTHLOC = new Point(ARILOC.x+115,ARILOC.y+125);
+	
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
 		i = Toolkit.getDefaultToolkit().getImage(s);
 		mouth = Toolkit.getDefaultToolkit().getImage(mouthS);
@@ -33,7 +38,7 @@ public class Alpaca implements MouseMotionListener{
 		transform.rotate(theta, MOUTHLOC.getX(), MOUTHLOC.getY());
 		g.transform(transform);
 		g.drawImage(mouth,MOUTHLOC.x,MOUTHLOC.y,null); 
-		g.transform(old);
+		g.setTransform(old);
 		g.drawImage(i,ARILOC.x,ARILOC.y,null);
 	}
 	public void drawArrow(Graphics2D g){
@@ -48,11 +53,6 @@ public class Alpaca implements MouseMotionListener{
 	public Ammo launch(){
 		  return(new Ammo());
 	}
-	  
-	public static final Point ARILOC = new Point(50,200);
-	public static final int HEIGHT = 300;
-	public static final int WIDTH = 100;
-	public static final Point MOUTHLOC = new Point(ARILOC.x+100,ARILOC.y+125);
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -72,6 +72,9 @@ public class Alpaca implements MouseMotionListener{
 		double x =  mousePoint.getX()-MOUTHLOC.getX();
 		double y =  mousePoint.getY()-MOUTHLOC.getY();
 		double angle = Math.atan(y/x);
+		System.out.println(angle);
+		if(angle<-Math.PI/4)angle=-Math.PI/4;
+		else if(angle>Math.PI/4)angle=Math.PI/4;
 		theta= angle;
 	}
 }
