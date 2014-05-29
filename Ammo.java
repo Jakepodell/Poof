@@ -14,7 +14,8 @@ public class Ammo
 	public static final int YSIZE = 20;
 	int xVelocity, yVelocity;
 	Point theLocation;
-	public Ammo()
+	Level theLevel;
+	public Ammo(level l)
 	{
 		try
 		{
@@ -24,6 +25,7 @@ public class Ammo
 		theLocation = new Point(50,50);
 		xVelocity = 0;
 		yVelocity = 0;
+		theLevel = l;
 
 	}
 	public void draw(Graphics2D g)
@@ -47,7 +49,7 @@ public class Ammo
 	public void explode()
 	{
 		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 50,50);
-		ArrayList<Grassfro> grassfros = level.getGrassfro(); //Gets all grassfros in level
+		ArrayList<Grassfro> grassfros = theLevel.getGrassfro(); //Gets all grassfros in level
 		for (Grassfro grass : grassfros)
 		{
 			if (ammorect.intersects(grass.getRect()))
