@@ -48,7 +48,7 @@ public class Ammo
 	{
 		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 50,50);
 		ArrayList<Grassfro> grassfros = level.getGrassfro(); //Gets all grassfros in level
-		for (Grassfro grass : grasfros)
+		for (Grassfro grass : grassfros)
 		{
 			if (ammorect.intersects(grass.getRect()))
 			{
