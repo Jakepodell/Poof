@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+public class level
+{
+	ArrayList<Ammo> ammo;
+	ArrayList<Grassfro> theGrassFros;
+	public level(int amount, ArrayList<Grassfro> grfo)
+	{
+		ammo = new ArrayList<Ammo>();
+		for (int i=0;i<amount;i++)
+			ammo.add(new Ammo());
+		theGrassFros = grfo;
+	}
+	public ArrayList<Grassfro> getGrassfro()
+	{
+		return theGrassFros;
+	}
+}
