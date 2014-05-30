@@ -48,7 +48,7 @@ public class Ammo
 	}
 	public void explode()
 	{
-		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 50,50);
+		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 25 +XSIZE,25+YSIZE);
 		ArrayList<Grassfro> grassfros = theLevel.getGrassfro(); //Gets all grassfros in level
 		for (Grassfro grass : grassfros)
 		{
