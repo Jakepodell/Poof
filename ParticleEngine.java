@@ -43,6 +43,15 @@ public class ParticleEngine implements ActionListener
 		t.start();
 	}
 	
+	public static void explodeImage (int x, int y)
+	{
+		for (int i = 0; i < TOTAL_PARTICLES; i++)
+		{
+			particleList.add(new Particle(x, y, img));
+		}
+		t.start();
+	}
+	
 	public static void explodeFire (int x, int y)
 	{
 		for (int i = 0; i < TOTAL_PARTICLES; i++)
