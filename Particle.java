@@ -30,7 +30,7 @@ public class Particle
 		i = pi;
 	}
 
-	public void draw(Graphics2D g)
+	public void draw(Graphics2D g) //Draws the particle's image if it exists, otherwise draws a circle
 	{
 		if (i == null)
 		{
@@ -45,11 +45,10 @@ public class Particle
 	{
 		x+=dx;
 		y+=dy;
-		if (dx > 2)
-			dx--;
-		else if (dx < -2)
-			dx++;
+		if (dx > 2)		// sets minimum
+			dx--;		// magnitude of
+		else if (dx < -2)	// horiztonal velocity
+			dx++;		// at 2
 		dy++;
-		//System.out.println("swag");
 	}
 }
