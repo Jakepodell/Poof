@@ -1,31 +1,41 @@
 import java.awt.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
-public class ParticleDriver extends JApplet implements MouseListener
+public class ParticleDriver extends JApplet implements MouseListener, ActionListener
 {
 	DrawingPanel dp;
 	ParticleEngine pe;
-
+	Timer t;
+	public final static int WIDTH = 1500;
+	public final static int HEIGHT = 750;
+	
 	public void init()
 	{
-		setSize(500, 500);
-		pe = new ParticleEngine(this);
+		setSize(WIDTH, HEIGHT);
+		pe = new ParticleEngine();
 		dp = new DrawingPanel();
 		setContentPane(dp);
 		addMouseListener(this);
+		t = new Timer(30, this);
+		t.addActionListener(this);
 
 	}
 
+	public void actionPerformed (ActionEvent e)
+	{
+		for (Particle p : ParticleEngine.getParticleList())
+			p.tick();
+		//ParticleEngine.removeOffScreenParticles();
+		repaint();
+	}
+	
 	public void mousePressed(MouseEvent e)
 	{
 		ParticleEngine.explodeRandomColors(e.getX(), e.getY());
+		t.start();
 	}
 
 	public void mouseClicked(MouseEvent e) {}
