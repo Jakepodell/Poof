@@ -9,8 +9,8 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 	DrawingPanel dp;
 	ParticleEngine pe;
 	Timer t;
-	public final static int WIDTH = 1500;
-	public final static int HEIGHT = 750;
+	public final static int WIDTH = 500;
+	public final static int HEIGHT = 500;
 	
 	public void init()
 	{
