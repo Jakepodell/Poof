@@ -1,28 +1,20 @@
 import java.awt.*;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ParticleEngine implements ActionListener
+public class ParticleEngine
 {
-	static Timer t;
-	static JApplet app;
+
 	static ArrayList<Particle> particleList;
 	final static int TOTAL_PARTICLES = 100;
 	static Image img;
 	static Random r;
 	
-	public ParticleEngine (JApplet pApp)
+	public ParticleEngine ()
 	{
-		t = new Timer(30, this);
-		t.addActionListener(this);
-		app = pApp;
 		particleList = new ArrayList<Particle>();
 		r = new Random();
 		
@@ -40,7 +32,6 @@ public class ParticleEngine implements ActionListener
 		{
 			particleList.add(new Particle(x, y, new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256))));
 		}
-		t.start();
 	}
 	
 	public static void explodeImage (int x, int y)
@@ -49,7 +40,6 @@ public class ParticleEngine implements ActionListener
 		{
 			particleList.add(new Particle(x, y, img));
 		}
-		t.start();
 	}
 	
 	public static void explodeFire (int x, int y)
@@ -69,20 +59,26 @@ public class ParticleEngine implements ActionListener
 			
 			particleList.add(new Particle(x, y, assignedColor));
 		}
-		t.start();
 	}
 
-	public void actionPerformed (ActionEvent e)
+	public static void removeOffScreenParticles() //doesn't work
 	{
+		//Removes particles from the arraylist if they are off screen.
 		for (Particle p : particleList)
-			p.tick();
-		app.repaint();
+			if (p.getX() > ParticleDriver.WIDTH || p.getX() < 0 || p.getY() > ParticleDriver.HEIGHT)
+				particleList.remove(p);
+		
 	}
 	
 	public static void draw(Graphics2D g)
 	{
 		for (Particle p : particleList)
 			p.draw(g);
+	}
+	
+	public static ArrayList<Particle> getParticleList ()
+	{
+		return particleList;
 	}
 
 }
