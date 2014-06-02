@@ -51,4 +51,12 @@ public class Particle
 			dx++;		// at 2
 		dy++;
 	}
+	public int getX()
+	{
+		return x;
+	}
+	public int getY()
+	{
+		return y;
+	}
 }
