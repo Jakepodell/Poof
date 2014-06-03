@@ -4,18 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.*;
 
 public class ParticleEngine
 {
 
-	static ArrayList<Particle> particleList;
+	static CopyOnWriteArrayList<Particle> particleList;
 	final static int TOTAL_PARTICLES = 100;
 	static Image img;
 	static Random r;
 	
 	public ParticleEngine ()
 	{
-		particleList = new ArrayList<Particle>();
+		particleList = new CopyOnWriteArrayList<Particle>();
 		r = new Random();
 		
 		try
@@ -76,7 +77,7 @@ public class ParticleEngine
 			p.draw(g);
 	}
 	
-	public static ArrayList<Particle> getParticleList ()
+	public static CopyOnWriteArrayList<Particle> getParticleList ()
 	{
 		return particleList;
 	}
