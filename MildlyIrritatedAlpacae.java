@@ -15,14 +15,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MildyIrritatedAlpacae extends JApplet implements ActionListener, MouseListener{
+public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, MouseListener{
 	public static final Dimension FRAMESIZE = new Dimension(800,800);
 	Timer t = new Timer(100,this);
 	Alpaca ari;
 	CopyOnWriteArrayList<Ammo> pellets = new CopyOnWriteArrayList<Ammo>();
 	Ground gr;
 	ParticleEngine pe;
-	public MildyIrritatedAlpacae(){
+	public MildlyIrritatedAlpacae(){
 		t.start();
 		setSize(FRAMESIZE);
 		setVisible(true);
