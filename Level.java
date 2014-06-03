@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class level
+public class Level
 {
 	ArrayList<Grassfro> theGrassFros;
 	Alpaca theAlpaca;
