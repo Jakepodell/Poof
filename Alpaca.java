@@ -29,6 +29,7 @@ public class Alpaca implements MouseMotionListener{
 		ammo=ammoAmount;
 		mousePoint = new Point(0,0);
 		parent.addMouseMotionListener(this);
+		power = 50;
 	}
 	
 	public void draw(Graphics2D g){
@@ -51,7 +52,9 @@ public class Alpaca implements MouseMotionListener{
 		  
 	}
 	public Ammo launch(){
-		  return(new Ammo());
+		double xVel = power*Math.cos(theta);
+		double yVel = power*Math.sin(theta);
+		return(new Ammo((int)xVel,(int)yVel));
 	}
 
 	@Override
@@ -72,7 +75,6 @@ public class Alpaca implements MouseMotionListener{
 		double x =  mousePoint.getX()-MOUTHLOC.getX();
 		double y =  mousePoint.getY()-MOUTHLOC.getY();
 		double angle = Math.atan(y/x);
-		System.out.println(angle);
 		if(angle<-Math.PI/4)angle=-Math.PI/4;
 		else if(angle>Math.PI/4)angle=Math.PI/4;
 		theta= angle;
