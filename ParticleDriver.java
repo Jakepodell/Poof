@@ -9,8 +9,8 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 	DrawingPanel dp;
 	ParticleEngine pe;
 	Timer t;
-	public final static int WIDTH = 500;
-	public final static int HEIGHT = 500;
+	public final static int WIDTH = 1000;
+	public final static int HEIGHT = 1000;
 	
 	public void init()
 	{
@@ -20,7 +20,8 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 		setContentPane(dp);
 		addMouseListener(this);
 		t = new Timer(30, this);
-		t.addActionListener(this);
+		t.start();
+	//	t.addActionListener(this);
 
 	}
 
@@ -28,14 +29,15 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 	{
 		for (Particle p : ParticleEngine.getParticleList())
 			p.tick();
-		//ParticleEngine.removeOffScreenParticles();
+		ParticleEngine.removeOffScreenParticles();
 		repaint();
 	}
 	
 	public void mousePressed(MouseEvent e)
 	{
+		//--------------------------------------------------------------
 		ParticleEngine.explodeRandomColors(e.getX(), e.getY());
-		t.start();
+		//--------------------------------------------------------------
 	}
 
 	public void mouseClicked(MouseEvent e) {}
