@@ -10,27 +10,61 @@ import java.util.ArrayList;
 public class Ammo
 {
 	BufferedImage theImage;
-	public static final int XSIZE = 20;
-	public static final int YSIZE = 20;
+	public static final int WIDTH = 100;
+	public static final int HEIGHT = 50;
 	int xVelocity, yVelocity;
+	private int x;
+	private int y;
 	Point theLocation;
-	level theLevel;
-	public Ammo(level l)
+	private boolean bouncing; //determines if the move method still needs to be called
+	public Ammo(int xVel, int yVel)
 	{
 		try
 		{
-			theImage = ImageIO.read(new File("////.jpg"));
+			theImage = ImageIO.read(new File("Pellet.png"));
 		}
 		catch(IOException e){}
 		theLocation = new Point(50,50);
-		xVelocity = 0;
-		yVelocity = 0;
-		theLevel = l;
+		x = (int) Alpaca.MOUTHLOC.getX();
+		y = (int) Alpaca.MOUTHLOC.getY();
+		theLocation = new Point(x,y);
+		xVelocity=xVel;
+		yVelocity=yVel;
+		bouncing=true;
 
 	}
 	public void draw(Graphics2D g)
 	{
-		g.drawImage(theImage, (int)theLocation.getX(), (int)theLocation.getY(), XSIZE, YSIZE, null);
+		g.drawImage(theImage, x, y, null);
+		move();
+	}
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
+	public void checkCollision(Ground g){
+		if(y+HEIGHT>=g.getY()){
+			y=(int) g.getY()-HEIGHT;
+			if(bouncing){
+				yVelocity-=10;
+				yVelocity=-yVelocity;
+				if(Math.abs(yVelocity)<=10){
+					yVelocity=0;
+					bouncing =false;
+					System.out.println("died");
+				}
+				else
+					System.out.println(yVelocity);
+			}
+			if(xVelocity>0)xVelocity-=15;
+			if(xVelocity<0)xVelocity=0;
+		}
+				
+	}
+	public boolean isDead(){
+		return(xVelocity==0&&yVelocity==0);
 	}
 	public void launch(int xVel, int yVel)
 	{
@@ -39,8 +73,12 @@ public class Ammo
 	}
 	public void move()
 	{
-		yVelocity -= 10;
-		theLocation.setLocation(theLocation.getX() + xVelocity,theLocation.getY() + yVelocity);
+		if(bouncing){
+			yVelocity += 5;
+			y+=yVelocity;
+		}
+		x+=xVelocity;
+		
 	}
 	public Point getLocation()
 	{
@@ -48,15 +86,15 @@ public class Ammo
 	}
 	public void explode()
 	{
-		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 25 +XSIZE,25+YSIZE);
-		ArrayList<Grassfro> grassfros = theLevel.getGrassfro(); //Gets all grassfros in level
+		Rectangle ammorect = new Rectangle((int)theLocation.getX() - 25, (int)theLocation.getY() - 25, 50,50);
+	/*	ArrayList<Grassfro> grassfros = level.getGrassfro(); //Gets all grassfros in level
 		for (Grassfro grass : grassfros)
 		{
 			if (ammorect.intersects(grass.getRect()))
 			{
 				grass.explode();
 			}
-		}
+		}*/
 	}
 
 }
