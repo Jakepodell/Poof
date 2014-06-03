@@ -51,12 +51,12 @@ public class Particle
 			dx++;		// at 2
 		dy++;
 	}
-	public int getX()
-	{
+	public int getX(){
 		return x;
 	}
-	public int getY()
-	{
+	public int getY(){
+		System.out.println(y);
+
 		return y;
 	}
 }
