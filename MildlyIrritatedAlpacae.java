@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,27 +15,31 @@ import javax.swing.Timer;
 
 public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, MouseListener{
 	public static final Dimension FRAMESIZE = new Dimension(800,800);
-	Timer t = new Timer(100,this);
+	Timer t = new Timer(60,this);
 	Alpaca ari;
 	CopyOnWriteArrayList<Ammo> pellets = new CopyOnWriteArrayList<Ammo>();
 	Ground gr;
 	ParticleEngine pe;
+	Building b;
+
 	public MildlyIrritatedAlpacae(){
-		t.start();
-		setSize(FRAMESIZE);
+
+
 		setVisible(true);
 		setContentPane(new drawingPanel());
 		ari = new Alpaca(3,"Ari.png","Ari Alpaca Mouth.png",this);
-		setSize(FRAMESIZE);
 		addMouseListener(this);
 		gr = Ground.getGround();
 		pe = new ParticleEngine();
+		b = new Building (800, gr.y - 300, "building.jpg", new Dimension (75, 300));
+		setSize(FRAMESIZE);
+		t.start();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		for (Particle p : ParticleEngine.getParticleList())
 			p.tick();
-		ParticleEngine.removeOffScreenParticles();	
+		ParticleEngine.removeOffScreenParticles();
 		repaint();
 	}
 	public class drawingPanel extends JPanel{
@@ -48,6 +51,7 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 			for(Ammo a: pellets){
 				a.draw(g2);
 				a.checkCollision(gr);
+				a.checkCollision(b);
 				if(a.isDead()){
 					pe.explodeFire(a.getX(),a.getY());
 					pellets.remove(a);
@@ -56,30 +60,31 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 			pe.draw(g2);;
 			g2.setColor(Color.black);
 			g2.draw(gr);
+			b.draw(g2);
 		}
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		
+
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		pellets.add(ari.launch());
-		
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
