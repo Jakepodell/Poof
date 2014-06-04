@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.Toolkit;
 
 public abstract class Structure
 {
@@ -6,11 +7,11 @@ public abstract class Structure
   Image i;
   Dimension d;
 
-  public Structure (int px, int py, Image pi, Dimension pd) //p for parameter
+  public Structure (int px, int py, String imageName, Dimension pd) //p for parameter
   {
 	  x = px;
 	  y = py;
-	  i = pi;
+	  i = Toolkit.getDefaultToolkit().getImage(imageName);
 	  d = pd;
   }
 
