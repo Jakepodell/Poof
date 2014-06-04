@@ -10,19 +10,18 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JApplet;
 
 public class Alpaca implements MouseMotionListener{
-	
+
 	private int power;
 	private double theta;
 	private int ammo;
 	private Image i;
 	private Image mouth;
 	private Point mousePoint;
-	
-	public static final Point ARILOC = new Point(50,200);
+	public static Point ARILOC = new Point (50, 300);
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = 100;
-	public static final Point MOUTHLOC = new Point(ARILOC.x+115,ARILOC.y+125);
-	
+	public static final Point MOUTHLOC = new Point(ARILOC.x+100,ARILOC.y);
+
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
 		i = Toolkit.getDefaultToolkit().getImage(s);
 		mouth = Toolkit.getDefaultToolkit().getImage(mouthS);
@@ -31,25 +30,25 @@ public class Alpaca implements MouseMotionListener{
 		parent.addMouseMotionListener(this);
 		power = 50;
 	}
-	
+
 	public void draw(Graphics2D g){
 		calcTheta();
 		AffineTransform transform = new AffineTransform();
 		AffineTransform old = g.getTransform();
 		transform.rotate(theta, MOUTHLOC.getX(), MOUTHLOC.getY());
 		g.transform(transform);
-		g.drawImage(mouth,MOUTHLOC.x,MOUTHLOC.y,null); 
+		g.drawImage(mouth,MOUTHLOC.x,MOUTHLOC.y,null);
 		g.setTransform(old);
 		g.drawImage(i,ARILOC.x,ARILOC.y,null);
 	}
 	public void drawArrow(Graphics2D g){
-		
+
 	}
 	public void rorateMouth(){
-		  
+
 	}
 	public void fluctuatePower(){
-		  
+
 	}
 	public Ammo launch(){
 		double xVel = power*Math.cos(theta);
@@ -60,13 +59,13 @@ public class Alpaca implements MouseMotionListener{
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mousePoint = e.getPoint();
-		
+
 	}
 	public Point getMouseLoc(){
 		return mousePoint;
