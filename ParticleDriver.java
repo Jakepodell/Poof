@@ -9,8 +9,8 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 	DrawingPanel dp;
 	ParticleEngine pe;
 	Timer t;
-	public final static int WIDTH = 1000;
-	public final static int HEIGHT = 1000;
+	public final static int WIDTH = 2000;
+	public final static int HEIGHT = 2000;
 	
 	public void init()
 	{
@@ -27,16 +27,16 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 
 	public void actionPerformed (ActionEvent e)
 	{
-		for (Particle p : ParticleEngine.getParticleList())
+		for (Particle p : pe.getParticleList())
 			p.tick();
-		ParticleEngine.removeOffScreenParticles();
+		pe.removeOffScreenParticles();
 		repaint();
 	}
 	
 	public void mousePressed(MouseEvent e)
 	{
 		//--------------------------------------------------------------
-		ParticleEngine.explodeRandomColors(e.getX(), e.getY());
+		pe.explodeRandomColors(e.getX(), e.getY());
 		//--------------------------------------------------------------
 	}
 
@@ -52,7 +52,7 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 
-			ParticleEngine.draw(g2);
+			pe.draw(g2);
 		}
 	}
 
