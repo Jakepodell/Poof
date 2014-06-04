@@ -44,6 +44,10 @@ public class Ammo
 	public int getY(){
 		return y;
 	}
+	public Rectangle getRect()
+	{
+		return (new Rectangle (x, y, WIDTH, HEIGHT));
+	}
 	public void checkCollision(Ground g){
 		if(y+HEIGHT>=g.getY()){
 			y=(int) g.getY()-HEIGHT;
@@ -58,11 +62,24 @@ public class Ammo
 				else
 					System.out.println(yVelocity);
 			}
-			if(xVelocity>0)xVelocity-=15;
-			if(xVelocity<0)xVelocity=0;
+			if(xVelocity>0)xVelocity*=0.1;
+			//if(Math.abs(xVelocity)<1)xVelocity=0;
 		}
-				
 	}
+	public void checkCollision(Building b){
+		if(getRect().intersects(b.getRect()))
+		{
+			if(bouncing){
+				xVelocity*=0.1;
+				xVelocity=-xVelocity;
+
+			}
+				else
+					System.out.println(xVelocity);
+
+		}
+	}
+
 	public boolean isDead(){
 		return(xVelocity==0&&yVelocity==0);
 	}
@@ -78,7 +95,7 @@ public class Ammo
 			y+=yVelocity;
 		}
 		x+=xVelocity;
-		
+
 	}
 	public Point getLocation()
 	{
