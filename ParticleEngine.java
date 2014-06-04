@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 public class ParticleEngine
 {
 
-	static CopyOnWriteArrayList<Particle> particleList;
+	CopyOnWriteArrayList<Particle> particleList;
 	final static int TOTAL_PARTICLES = 100;
 	static Image img;
 	static Random r;
@@ -27,7 +27,7 @@ public class ParticleEngine
 		catch(IOException e){}
 	}
 
-	public static void explodeRandomColors (int x, int y)
+	public void explodeRandomColors (int x, int y)
 	{
 		for (int i = 0; i < TOTAL_PARTICLES; i++)
 		{
@@ -35,7 +35,7 @@ public class ParticleEngine
 		}
 	}
 	
-	public static void explodeImage (int x, int y)
+	public void explodeImage (int x, int y)
 	{
 		for (int i = 0; i < TOTAL_PARTICLES; i++)
 		{
@@ -43,7 +43,7 @@ public class ParticleEngine
 		}
 	}
 	
-	public static void explodeFire (int x, int y)
+	public void explodeFire (int x, int y)
 	{
 		for (int i = 0; i < TOTAL_PARTICLES; i++)
 		{
@@ -62,7 +62,7 @@ public class ParticleEngine
 		}
 	}
 
-	public static void removeOffScreenParticles() //doesn't work
+	public void removeOffScreenParticles() //doesn't work
 	{
 		//Removes particles from the arraylist if they are off screen.
 		for (Particle p : particleList)
@@ -71,13 +71,13 @@ public class ParticleEngine
 		
 	}
 	
-	public static void draw(Graphics2D g)
+	public void draw(Graphics2D g)
 	{
 		for (Particle p : particleList)
 			p.draw(g);
 	}
 	
-	public static CopyOnWriteArrayList<Particle> getParticleList ()
+	public CopyOnWriteArrayList<Particle> getParticleList ()
 	{
 		return particleList;
 	}
