@@ -55,8 +55,6 @@ public class Particle
 		return x;
 	}
 	public int getY(){
-		System.out.println(y);
-
 		return y;
 	}
 }
