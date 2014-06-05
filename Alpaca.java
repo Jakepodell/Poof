@@ -20,7 +20,7 @@ public class Alpaca implements MouseMotionListener{
 	public static Point ARILOC = new Point (50, 300);
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = 100;
-	public static final Point MOUTHLOC = new Point(ARILOC.x+100,ARILOC.y);
+	public static final Point MOUTHLOC = new Point(ARILOC.x+75,ARILOC.y);
 
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
 		i = Toolkit.getDefaultToolkit().getImage(s);
@@ -28,25 +28,21 @@ public class Alpaca implements MouseMotionListener{
 		ammo=ammoAmount;
 		mousePoint = new Point(0,0);
 		parent.addMouseMotionListener(this);
-		power = 50;
+		power = 100;
 	}
 
 	public void draw(Graphics2D g){
 		calcTheta();
+		g.drawImage(i,ARILOC.x,ARILOC.y,null);
 		AffineTransform transform = new AffineTransform();
 		AffineTransform old = g.getTransform();
 		transform.rotate(theta, MOUTHLOC.getX(), MOUTHLOC.getY());
 		g.transform(transform);
 		g.drawImage(mouth,MOUTHLOC.x,MOUTHLOC.y,null);
 		g.setTransform(old);
-		g.drawImage(i,ARILOC.x,ARILOC.y,null);
 	}
 	public void drawArrow(Graphics2D g){
 
-	}
-	public int getAmmoLeft()
-	{
-		return ammo;
 	}
 	public void rorateMouth(){
 
