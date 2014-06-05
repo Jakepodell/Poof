@@ -6,16 +6,18 @@ public class Level
 	ArrayList<GlassBuilding> theGlassBuildings;
 	ArrayList<SoildBuilding> theSolidBuildings;
 	ArrayList<BounceBuilding> theBounceBuildings;
+	ArrayList<Ground> theGrounds;
 	int HighestScore;
 	int currentScore;
 	String HighScoreName;
-	public level(ArrayList<Grassfro> grfo, ArrayList<GlassBuilding> GlB, ArrayList<SoildBuilding> SolB, ArrayList<BounceBuilding> BB, int ammoAmt, String s, String mouthS, JApplet parent)
+	public level(ArrayList<Grassfro> grfo, ArrayList<GlassBuilding> GlB, ArrayList<SoildBuilding> SolB, ArrayList<BounceBuilding> BB, ArrayList<Ground> gr, int ammoAmt, String s, String mouthS, JApplet parent)
 	{
 		theAlpaca = new Alpaca(ammoAmt, s, mouthS, parent);
 		theGrassFros = grfo;
 		theGlassBuildings = GlB;
 		theSolidBuildings = SolB;
 		theBounceBuildings = BB;
+		theGrounds = gr;
 		currentScore = 0;
 		HighestScore = 0;
 		HighScoreName = "";
@@ -35,6 +37,8 @@ public class Level
 			solB.draw(g);
 		for (BounceBuilding bonb : theBounceBuildings)
 			bonb.draw(g);
+		for (Ground gr : theGrounds)
+			gr.draw(g);
 	}
 	public void checkdone()
 	{
