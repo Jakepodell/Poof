@@ -44,6 +44,10 @@ public class Alpaca implements MouseMotionListener{
 	public void drawArrow(Graphics2D g){
 
 	}
+	public int getAmmoLeft()
+	{
+		return ammo;
+	}
 	public void rorateMouth(){
 
 	}
