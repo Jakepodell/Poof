@@ -5,12 +5,14 @@ public class Level
 	Alpaca theAlpaca;
 	ArrayList<GlassBuilding> theGlassBuildings;
 	ArrayList<SoildBuilding> theSolidBuildings;
-	public level(ArrayList<Grassfro> grfo, ArrayList<GlassBuilding> GlB, ArrayList<SoildBuilding> SolB, int ammoAmt, String s, String mouthS, JApplet parent)
+	ArrayList<BounceBuilding> theBounceBuildings;
+	public level(ArrayList<Grassfro> grfo, ArrayList<GlassBuilding> GlB, ArrayList<SoildBuilding> SolB, ArrayList<BounceBuilding> BB, int ammoAmt, String s, String mouthS, JApplet parent)
 	{
 		theAlpaca = new Alpaca(ammoAmt, s, mouthS, parent);
 		theGrassFros = grfo;
 		theGlassBuildings = GlB;
 		theSolidBuildings = SolB;
+		theBounceBuildings = BB;
 	}
 	public ArrayList<Grassfro> getGrassfro()
 	{
@@ -25,5 +27,7 @@ public class Level
 			gb.draw(g);
 		for (SoildBuilding solB : theSolidBuildings)
 			solB.draw(g);
+		for (BounceBuilding bonb : theBounceBuildings)
+			bonb.draw(g);
 	}
 }
