@@ -37,9 +37,9 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		for (Particle p : ParticleEngine.getParticleList())
+		for (Particle p : pe.getParticleList())
 			p.tick();
-		ParticleEngine.removeOffScreenParticles();
+		pe.removeOffScreenParticles();
 		repaint();
 	}
 	public class drawingPanel extends JPanel{
