@@ -6,6 +6,9 @@ public class Level
 	ArrayList<GlassBuilding> theGlassBuildings;
 	ArrayList<SoildBuilding> theSolidBuildings;
 	ArrayList<BounceBuilding> theBounceBuildings;
+	int HighestScore;
+	int currentScore;
+	String HighScoreName;
 	public level(ArrayList<Grassfro> grfo, ArrayList<GlassBuilding> GlB, ArrayList<SoildBuilding> SolB, ArrayList<BounceBuilding> BB, int ammoAmt, String s, String mouthS, JApplet parent)
 	{
 		theAlpaca = new Alpaca(ammoAmt, s, mouthS, parent);
@@ -13,6 +16,9 @@ public class Level
 		theGlassBuildings = GlB;
 		theSolidBuildings = SolB;
 		theBounceBuildings = BB;
+		currentScore = 0;
+		HighestScore = 0;
+		HighScoreName = "";
 	}
 	public ArrayList<Grassfro> getGrassfro()
 	{
@@ -29,5 +35,21 @@ public class Level
 			solB.draw(g);
 		for (BounceBuilding bonb : theBounceBuildings)
 			bonb.draw(g);
+	}
+	public void checkdone()
+	{
+		if (theGrassFros.size() == 0)
+		{
+			score = 500 + (500 * theAlpaca.getAmmoLeft());
+			if(score>HighestScore)
+			{
+				newHighestScore(score);
+			}
+		}
+	}
+	private void newHighestScore(int newscore)
+	{
+		HighestScore = newscore;
+		//High Score Message, Get name
 	}
 }
