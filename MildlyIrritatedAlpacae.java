@@ -31,7 +31,7 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 		addMouseListener(this);
 		gr = Ground.getGround();
 		pe = new ParticleEngine();
-		b = new Building (800, gr.y - 300, "building.jpg", new Dimension (75, 300));
+		b = new Building (850, gr.y - 300, "building.jpg", new Dimension (75, 300));
 		setSize(FRAMESIZE);
 		t.start();
 	}
