@@ -10,12 +10,13 @@ import java.util.ArrayList;
 public class Ammo
 {
 	BufferedImage theImage;
-	public static final int WIDTH = 100;
+	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;
 	int xVelocity, yVelocity;
 	private int x;
 	private int y;
 	Point theLocation;
+	private final double COEFFICIENT_OF_FRICTION = 0.4;
 	private boolean bouncing; //determines if the move method still needs to be called
 	public Ammo(int xVel, int yVel)
 	{
@@ -59,24 +60,19 @@ public class Ammo
 					bouncing =false;
 					System.out.println("died");
 				}
-				else
-					System.out.println(yVelocity);
 			}
-			if(xVelocity>0)xVelocity*=0.1;
-			//if(Math.abs(xVelocity)<1)xVelocity=0;
+			xVelocity*=COEFFICIENT_OF_FRICTION;
+			if(Math.abs(xVelocity)<1)xVelocity=0;
 		}
 	}
 	public void checkCollision(Building b){
 		if(getRect().intersects(b.getRect()))
 		{
 			if(bouncing){
-				xVelocity*=0.1;
+				xVelocity*=(COEFFICIENT_OF_FRICTION / 1.5);
 				xVelocity=-xVelocity;
-
+				x=b.getX()-WIDTH;
 			}
-				else
-					System.out.println(xVelocity);
-
 		}
 	}
 
