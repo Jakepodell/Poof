@@ -36,7 +36,7 @@ public class Ammo
 	}
 	public void draw(Graphics2D g)
 	{
-		g.drawImage(theImage, x, y, null);
+		g.drawImage(theImage, x, y, WIDTH, HEIGHT, null);
 		move();
 	}
 	public int getX(){
@@ -66,7 +66,7 @@ public class Ammo
 		}
 	}
 	public void checkCollision(Building b){
-		if(getRect().intersects(b.getRect()) && y > b.getY())
+		if(getRect().intersects(b.getRect()) && y + HEIGHT - yVelocity > b.getY())
 		{
 			if(bouncing){
 				xVelocity*=(COEFFICIENT_OF_FRICTION / 1.5);
@@ -88,7 +88,6 @@ public class Ammo
 			}
 		}
 	}
-
 	public boolean isDead(){
 		return(xVelocity==0&&yVelocity==0);
 	}
