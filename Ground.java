@@ -16,10 +16,16 @@ public class Ground{
 			theGrounds.add(new Rectangle(0,800,500,200));
 			theGrounds.add(new Rectangle(600,800,200,200));
 		}
-		if (levelNumber == 2)
+		else if (levelNumber == 2)
 		{
 			theGrounds.add(new Rectangle(0,800,100,200));
-			theGrounds.add(new Rectangle(100,800,100,100));
+			theGrounds.add(new Rectangle(100,900,100,100));
+			theGrounds.add(new Rectangle(200,800,400,200));
+			theGrounds.add(new Rectangle
+		}
+		else
+		{
+
 		}
 	}
 	public void draw(Graphics2D g)
