@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.Toolkit;
 
-public abstract class Structure
+public abstract class Structure implements Scrollable
 {
   int x, y;
   Image i;
@@ -15,7 +15,9 @@ public abstract class Structure
 	  d = pd;
   }
 
-  public abstract void draw (Graphics2D g);
+  public void draw (Graphics2D g, int offset){
+  	g.drawImage(i, x-offset, y, (int) d.getWidth(), (int) d.getHeight(), null);
+  }
 
   public abstract void explode ();
 }
