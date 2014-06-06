@@ -9,7 +9,7 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JApplet;
 
-public class Alpaca implements MouseMotionListener{
+public class Alpaca implements MouseMotionListener, Scrollable{
 
 	private int power;
 	private double theta;
@@ -31,14 +31,14 @@ public class Alpaca implements MouseMotionListener{
 		power = 100;
 	}
 
-	public void draw(Graphics2D g){
+	public void draw(Graphics2D g, int offset){
 		calcTheta();
-		g.drawImage(i,ARILOC.x,ARILOC.y,null);
+		g.drawImage(i,ARILOC.x-offset,ARILOC.y,null);
 		AffineTransform transform = new AffineTransform();
 		AffineTransform old = g.getTransform();
-		transform.rotate(theta, MOUTHLOC.getX(), MOUTHLOC.getY());
+		transform.rotate(theta, MOUTHLOC.getX()-offset, MOUTHLOC.getY());
 		g.transform(transform);
-		g.drawImage(mouth,MOUTHLOC.x,MOUTHLOC.y,null);
+		g.drawImage(mouth,MOUTHLOC.x-offset,MOUTHLOC.y,null);
 		g.setTransform(old);
 	}
 	public void drawArrow(Graphics2D g){
