@@ -1,16 +1,25 @@
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-public class Ground extends Rectangle {
-	public Ground(int x, int y, int width, int height)
+import java.util.ArrayList;
+import java.awt.*;
+
+public class Ground{
+
+	ArrayList<Rectangle> theGrounds;
+	Image groundImage;
+	public Ground(ArrayList<Rectangle> theRects, Image img)
 	{
-		super(x,y,width,height);
+		theGrounds = theRects;
+		groundImage = img;
 	}
-/*	public static Ground getGround(){
-//		return new Ground(10,550,1300,75);
-	}*/
 	public void draw(Graphics2D g)
 	{
-		g.drawRect(this);
+		for (Rectangle rect : theGrounds)
+			g.drawImage(groundImage, (int)rect.getX(), (int)rect.getY(), (int) rect.getWidth(), (int)rect.getHeight(),null);
+	}
+	public ArrayList<Rectangle> getRectangles()
+	{
+		return theGrounds;
 	}
 }
