@@ -20,8 +20,8 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 	CopyOnWriteArrayList<Ammo> pellets = new CopyOnWriteArrayList<Ammo>();
 	Ground gr;
 	ParticleEngine pe;
-	Building b;
-
+	CopyOnWriteArrayList<Building> buildings = new CopyOnWriteArrayList<Building>();
+	
 	public MildlyIrritatedAlpacae(){
 
 
@@ -31,7 +31,8 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 		addMouseListener(this);
 		gr = Ground.getGround();
 		pe = new ParticleEngine();
-		b = new Building (850, gr.y - 300, "building.jpg", new Dimension (75, 300));
+		buildings.add(new Building (850, gr.y - 300, "building.jpg", new Dimension (75, 300)));
+		buildings.add(new Building (1000, gr.y - 500, "building.jpg", new Dimension (75, 500)));
 		setSize(FRAMESIZE);
 		t.start();
 	}
@@ -51,7 +52,8 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 			for(Ammo a: pellets){
 				a.draw(g2);
 				a.checkCollision(gr);
-				a.checkCollision(b);
+				for (Building b: buildings)
+					a.checkCollision(b);
 				if(a.isDead()){
 					pe.explodeFire(a.getX(),a.getY());
 					pellets.remove(a);
@@ -60,7 +62,8 @@ public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, M
 			pe.draw(g2);;
 			g2.setColor(Color.black);
 			g2.draw(gr);
-			b.draw(g2);
+			for (Building b: buildings)
+				b.draw(g2);
 		}
 	}
 	@Override
