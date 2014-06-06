@@ -8,10 +8,19 @@ public class Ground{
 
 	ArrayList<Rectangle> theGrounds;
 	Image groundImage;
-	public Ground(ArrayList<Rectangle> theRects, Image img)
+	public Ground(int levelNumber, Image img)
 	{
-		theGrounds = theRects;
 		groundImage = img;
+		if (levelNumber == 1)
+		{
+			theGrounds.add(new Rectangle(0,800,500,200));
+			theGrounds.add(new Rectangle(600,800,200,200));
+		}
+		if (levelNumber == 2)
+		{
+			theGrounds.add(new Rectangle(0,800,100,200));
+			theGrounds.add(new Rectangle(100,800,100,100));
+		}
 	}
 	public void draw(Graphics2D g)
 	{
