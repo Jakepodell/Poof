@@ -66,12 +66,25 @@ public class Ammo
 		}
 	}
 	public void checkCollision(Building b){
-		if(getRect().intersects(b.getRect()))
+		if(getRect().intersects(b.getRect()) && y > b.getY())
 		{
 			if(bouncing){
 				xVelocity*=(COEFFICIENT_OF_FRICTION / 1.5);
 				xVelocity=-xVelocity;
 				x=b.getX()-WIDTH;
+			}
+		}
+		else if (getRect().intersects(b.getRect()))
+		{
+			y=(int) b.getY()-HEIGHT;
+			if(bouncing){
+				yVelocity-=10;
+				yVelocity=-yVelocity;
+				if(Math.abs(yVelocity)<=10){
+					yVelocity=0;
+					bouncing =false;
+					System.out.println("died");
+				}
 			}
 		}
 	}
