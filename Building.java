@@ -25,8 +25,4 @@ public class Building extends Structure
 	{
 		return (new Rectangle (x, y, (int) d.getWidth(), (int) d.getHeight()));
 	}
-	public void draw (Graphics2D g)
-	{
-		g.drawImage(i, x, y, (int) d.getWidth(), (int) d.getHeight(), null);
-	}
 }
