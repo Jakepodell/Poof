@@ -13,10 +13,11 @@ public class Ammo
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;
 	int xVelocity, yVelocity;
+	int oldX, oldY;
 	private int x;
 	private int y;
 	Point theLocation;
-	private final double COEFFICIENT_OF_FRICTION = 0.4;
+	private final double COEFFICIENT_OF_FRICTION = 0.5;
 	private boolean bouncing; //determines if the move method still needs to be called
 	public Ammo(int xVel, int yVel)
 	{
@@ -57,6 +58,7 @@ public class Ammo
 				yVelocity=-yVelocity;
 				if(Math.abs(yVelocity)<=10){
 					yVelocity=0;
+					//xVelocity = 0;
 					bouncing =false;
 					System.out.println("died");
 				}
@@ -71,7 +73,8 @@ public class Ammo
 			if(bouncing){
 				xVelocity*=(COEFFICIENT_OF_FRICTION / 1.5);
 				xVelocity=-xVelocity;
-				x=b.getX()-WIDTH;
+				if (oldX >= b.getX() + WIDTH) x = b.getX() + (int) b.getRect().getWidth();
+				else x=b.getX()- WIDTH;
 			}
 		}
 		else if (getRect().intersects(b.getRect()))
@@ -82,12 +85,14 @@ public class Ammo
 				yVelocity=-yVelocity;
 				if(Math.abs(yVelocity)<=10){
 					yVelocity=0;
+					xVelocity = 0;
 					bouncing =false;
 					System.out.println("died");
 				}
 			}
 		}
 	}
+
 	public boolean isDead(){
 		return(xVelocity==0&&yVelocity==0);
 	}
@@ -98,6 +103,8 @@ public class Ammo
 	}
 	public void move()
 	{
+		oldX = x;
+		oldY = y;
 		if(bouncing){
 			yVelocity += 5;
 			y+=yVelocity;
