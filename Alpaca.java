@@ -16,11 +16,10 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 	private Image i;
 	private Image mouth;
 	private Point mousePoint;
-	public static Point ARILOC = new Point (50, 300);
+	public static Point ARILOC = new Point (50, 350);
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = 100;
 	public static final Point MOUTHLOC = new Point(ARILOC.x+130,ARILOC.y + 45);
-	public static Point mouthTipLoc;
 
 
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
@@ -85,6 +84,5 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 		if(angle<-Math.PI/4)angle=-Math.PI/4;
 		else if(angle>Math.PI/4)angle=Math.PI/4;
 		theta= angle;
-		mouthTipLoc = new Point (MOUTHLOC.x + (int) (mouth.getWidth(null) * Math.cos(theta)), MOUTHLOC.y + (int) (mouth.getWidth(null) * Math.sin(theta)));
 	}
 }
