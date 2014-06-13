@@ -1,17 +1,16 @@
 
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 
-import javax.swing.JApplet;
+import javax.swing.*;
 
 public class Alpaca implements MouseMotionListener, Scrollable{
 
 	private int power;
+	private boolean subtractPower = true;
 	private double theta;
 	private int ammo;
 	private Image i;
@@ -20,7 +19,9 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 	public static Point ARILOC = new Point (50, 300);
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = 100;
-	public static final Point MOUTHLOC = new Point(ARILOC.x+75,ARILOC.y);
+	public static final Point MOUTHLOC = new Point(ARILOC.x+130,ARILOC.y + 45);
+	public static Point mouthTipLoc;
+
 
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
 		i = Toolkit.getDefaultToolkit().getImage(s);
@@ -41,14 +42,17 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 		g.drawImage(mouth,MOUTHLOC.x-offset,MOUTHLOC.y,null);
 		g.setTransform(old);
 	}
-	public void drawArrow(Graphics2D g){
 
-	}
 	public void rorateMouth(){
 
 	}
 	public void fluctuatePower(){
-
+		if (subtractPower)
+			power-=4;
+		else
+			power+=4;
+		if (power < 15 || power > 100)
+			subtractPower = !subtractPower;
 	}
 	public Ammo launch(){
 		double xVel = power*Math.cos(theta);
@@ -70,6 +74,10 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 	public Point getMouseLoc(){
 		return mousePoint;
 	}
+	public int getPower()
+	{
+		return power;
+	}
 	private void calcTheta(){
 		double x =  mousePoint.getX()-MOUTHLOC.getX();
 		double y =  mousePoint.getY()-MOUTHLOC.getY();
@@ -77,5 +85,6 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 		if(angle<-Math.PI/4)angle=-Math.PI/4;
 		else if(angle>Math.PI/4)angle=Math.PI/4;
 		theta= angle;
+		mouthTipLoc = new Point (MOUTHLOC.x + (int) (mouth.getWidth(null) * Math.cos(theta)), MOUTHLOC.y + (int) (mouth.getWidth(null) * Math.sin(theta)));
 	}
 }
