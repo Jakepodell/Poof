@@ -5,7 +5,7 @@ public class Grassfro extends Structure
 {
 	boolean exploded = false;
 	
-	public Grassfro (int x, int y, Image i, Dimension d)
+	public Grassfro (int x, int y, String i, Dimension d)
 	{
 		super(x, y, i, d);
 	}
