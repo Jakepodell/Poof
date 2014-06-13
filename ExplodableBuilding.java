@@ -3,7 +3,7 @@ import java.awt.*;
 public class ExplodableBuilding extends Building implements Explodable
 {
 	boolean exploded = false;
-	public ExplodableBuilding(int x, int y, Image i, Dimension d)
+	public ExplodableBuilding(int x, int y, String i, Dimension d)
 	{
 		super(x, y, i, d);
 	}
