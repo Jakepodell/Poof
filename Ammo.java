@@ -51,8 +51,8 @@ public class Ammo
 		return (new Rectangle (x, y, WIDTH, HEIGHT));
 	}
 	public void checkCollision(Ground g){
-		if(y+HEIGHT>=g.getY()){
-			y=(int) g.getY()-HEIGHT;
+		if(y+HEIGHT>=g.convertXtoY(x)){
+			y=(int) g.convertXtoY(x)-HEIGHT;
 			if(bouncing){
 				yVelocity-=10;
 				yVelocity=-yVelocity;
