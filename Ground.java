@@ -42,4 +42,22 @@ public class Ground{
 	{
 		return theGrounds;
 	}
+	
+	public int convertXtoY (int x)
+	{
+		if (level == 1)
+		{
+			if (x > 0 && x <= 500) return 600;
+			else if (x <= 600) return 690;
+			else return 600;
+		}
+		else if (level == 2)
+		{
+			if (x > 0 && x <= 400) return 800;
+			else if (x <= 500) return 850;
+			else if (x <= 1000) return 800;
+			else return 500;
+		}
+		else return 0;
+	}
 }
