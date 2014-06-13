@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class MildlyIrritatedAlpacae extends JApplet implements ActionListener, MouseListener{
 	public static final Dimension FRAMESIZE = new Dimension(1200,800);
-	Timer t = new Timer(60,this);
+	Timer t = new Timer(80,this);
 	Alpaca ari;
 	CopyOnWriteArrayList<Ammo> pellets = new CopyOnWriteArrayList<Ammo>();
 	Ground gr;
