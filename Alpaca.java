@@ -19,7 +19,7 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 	public static Point ARILOC = new Point (50, 350);
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = 100;
-	public static final Point MOUTHLOC = new Point(ARILOC.x+130,ARILOC.y + 45);
+	public static final Point MOUTHLOC = new Point(ARILOC.x+125,ARILOC.y + 45);
 
 
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
