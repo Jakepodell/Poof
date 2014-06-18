@@ -1,0 +1,17 @@
+import java.awt.*;
+
+public class Background
+{
+	int x, y;
+	Image i;
+	public Background(int x, int y, Image i)
+	{
+		this.x=x;
+		this.y=y;
+		this.i=i;
+	}
+	public void drawWallpaper(Graphics2D g1)
+	{
+		g1.drawImage(i,x, y, null);
+	}
+}
