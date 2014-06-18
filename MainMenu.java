@@ -9,7 +9,7 @@ public class MainMenu extends JPanel implements MouseListener, MouseMotionListen
 	int x,y;
 
 	ArrayList<MenuButtons> playButton;
-	ArrayList<LevelSelectButtons> levelButton;
+	ArrayList<LevelButtons> levelButton;
 	ArrayList<Background> background;
 	Boolean MainScreen = true;
 
@@ -17,7 +17,7 @@ public class MainMenu extends JPanel implements MouseListener, MouseMotionListen
 	public MainMenu()
 	{
 		playButton = new ArrayList<MenuButtons>();
-		levelButton = new ArrayList<LevelSelectButtons>();
+		levelButton = new ArrayList<LevelButtons>();
 		background = new ArrayList<Background>();
 		addMouseListener(this);
       	addMouseMotionListener( this );
@@ -27,7 +27,8 @@ public class MainMenu extends JPanel implements MouseListener, MouseMotionListen
 	public void addPlayButton(MenuButtons b)
 	{
 		playButton.add(b);
-	}public void addLevelButton(LevelSelectButtons b)
+	}
+	public void addLevelButton(LevelButtons b)
 	{
 		levelButton.add(b);
 	}
@@ -91,7 +92,8 @@ public class MainMenu extends JPanel implements MouseListener, MouseMotionListen
 		{
 			g1.setColor(Color.BLACK);
 			g1.fillRect(0,0,1000,700);
-        	for(LevelSelectButtons b: levelButton){b.drawButton(g1);}
+        	for(Background b: background){b.drawLevelSelectWallpaper(g1);}
+        	for(LevelButtons b: levelButton){b.drawButton(g1);}
 		}
 
     }
