@@ -25,7 +25,7 @@ public class Alpaca implements MouseMotionListener, Scrollable{
 	public Alpaca(int ammoAmount, String s, String mouthS, JApplet parent){
 		i = Toolkit.getDefaultToolkit().getImage(s);
 		mouth = Toolkit.getDefaultToolkit().getImage(mouthS);
-		ammo=ammoAmount;
+		ammo = ammoAmount;
 		mousePoint = new Point(0,0);
 		parent.addMouseMotionListener(this);
 		power = 100;
